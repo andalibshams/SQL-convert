@@ -21,7 +21,7 @@ select
 	@iteration+sc.SimRunID,
 	@insertionDate,
 	sc.SimTime,
-	sc.SC,
+	sc.Signalcontroller,
 	sc.SG,
 	case sc.Image
 		when 'green' then 1
@@ -78,7 +78,7 @@ from
 	vissim_andalib.dbo.NodeRawData as n
 
 
-insert into [sim_Andalib].[dbo].[VehRecord] (StudyID, RunID, Iteration, InsertionDate, SIMSEC, No_, Link, Lane, Pos, Pos_Lat) 
+insert into [sim_Andalib].[dbo].[VehRecord] (StudyID, RunID, Iteration, InsertionDate, SIMSEC, No_, Link, Lane, Pos, Speed) 
 select
 	@studyid,
 	@runid,
@@ -89,7 +89,7 @@ select
 	veh.[LANE\LINK\NO], 
 	veh.[LANE\INDEX], 
 	veh.POS, 
-	veh.POSLAT
+	veh.speed
 from vissim_andalib.dbo.VEHICLE as veh;
 
 delete [vissim_Andalib].[dbo].[NodeRawData]
